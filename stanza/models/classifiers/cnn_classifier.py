@@ -51,8 +51,8 @@ class CNNClassifier(nn.Module):
                                       dropout = args.dropout,
                                       num_classes = len(labels),
                                       wordvec_type = args.wordvec_type,
-                                      extra_wordvec_method = args.extra_wordvec_method,
-                                      extra_wordvec_dim = args.extra_wordvec_dim,
+                                      extra_wordvec_method = classifier_args.ExtraVectors.NONE,
+                                      extra_wordvec_dim = 0,
                                       model_type = 'CNNClassifier')
 
         self.unsaved_modules = []
@@ -84,6 +84,7 @@ class CNNClassifier(nn.Module):
             # delta a bit less drastic in its effect
             self.extra_embedding = nn.Embedding(num_embeddings = len(extra_vocab),
                                                 embedding_dim = self.config.extra_wordvec_dim,
+                                                max_norm = args.extra_wordvec_max_norm,
                                                 padding_idx = 0)
             logger.info("Extra embedding size: {}".format(self.extra_embedding.weight.shape))
         else:
