@@ -52,8 +52,8 @@ class CNNClassifier(nn.Module):
                                       dropout = args.dropout,
                                       num_classes = len(labels),
                                       wordvec_type = args.wordvec_type,
-                                      extra_wordvec_method = classifier_args.ExtraVectors.NONE,
-                                      extra_wordvec_dim = 0,
+                                      extra_wordvec_method = args.extra_wordvec_method,
+                                      extra_wordvec_dim = args.extra_wordvec_dim,
                                       model_type = 'CNNClassifier')
 
         self.unsaved_modules = []
